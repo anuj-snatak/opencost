@@ -1,23 +1,3 @@
-opencost:
-  exporter:
-    enabled: true
-
-ui:
-  enabled: true
-
-service:
-  type: ClusterIP
-  port: 9003
-
-ingress:
-  enabled: false   # LDC / private setup me default OFF
-
-extraEnv:
-  OPENCOST_UI_PORT: "9003"
-root@d-as-k8s-cst-opcs-8-126:~/opencost-deploy# cd ..
-root@d-as-k8s-cst-opcs-8-126:~# cat values,yaml
-cat: values,yaml: No such file or directory
-root@d-as-k8s-cst-opcs-8-126:~# cat values.yaml
 prometheus:
   internal:
     enabled: false

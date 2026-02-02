@@ -1,0 +1,55 @@
+opencost:
+  exporter:
+    enabled: true
+
+ui:
+  enabled: true
+
+service:
+  type: ClusterIP
+  port: 9003
+
+ingress:
+  enabled: false   # LDC / private setup me default OFF
+
+extraEnv:
+  OPENCOST_UI_PORT: "9003"
+root@d-as-k8s-cst-opcs-8-126:~/opencost-deploy# cd ..
+root@d-as-k8s-cst-opcs-8-126:~# cat values,yaml
+cat: values,yaml: No such file or directory
+root@d-as-k8s-cst-opcs-8-126:~# cat values.yaml
+prometheus:
+  internal:
+    enabled: false
+  external:
+    enabled: true
+    url: http://prometheus-server.monitoring.svc.cluster.local
+
+ui:
+  enabled: true
+
+extraEnv:
+  - name: PROMETHEUS_SERVER_ENDPOINT
+    value: http://prometheus-server.monitoring.svc.cluster.local
+
+cloudCost:
+  enabled: false
+
+# 🔥 THIS IS THE KEY FIX
+startupProbe:
+  enabled: false
+readinessProbe:
+  enabled: false
+livenessProbe:
+  enabled: false
+
+service:
+  type: ClusterIP
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
